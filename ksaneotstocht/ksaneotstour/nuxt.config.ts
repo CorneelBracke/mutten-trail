@@ -1,5 +1,13 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2024-11-01',
-  devtools: { enabled: true }
+
+  runtimeConfig: {
+    // Keys only available server-side
+    sessionPassword: process.env.NUXT_SESSION_PASSWORD, // Zeer belangrijk! Stel in Vercel in.
+    adminSecret: process.env.ADMIN_SECRET,
+    databaseUrl: process.env.DATABASE_URL,
+
+    public: {
+    }
+  },
+
 })
