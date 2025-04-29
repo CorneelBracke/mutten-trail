@@ -1,6 +1,6 @@
 import { defineEventHandler, createError, getRouterParam } from 'h3'
 import { useSession } from 'h3'
-import { getDbClient } from '~/server/utils/db'
+import { getDbClient } from '~/server/utils/supabase'
 import { useRuntimeConfig } from '#imports'
 
 export default defineEventHandler(async (event) => {

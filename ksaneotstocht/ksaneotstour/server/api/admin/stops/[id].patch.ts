@@ -1,7 +1,7 @@
 import { defineEventHandler, readBody, createError, getRouterParam } from 'h3'
 import { useSession } from 'h3'
 import { z } from 'zod'
-import { getDbClient } from '~/server/utils/db'
+import { getDbClient } from '~/server/utils/supabase'
 import { useRuntimeConfig } from '#imports'
 
 const ToggleSchema = z.object({

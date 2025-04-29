@@ -3,13 +3,15 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "postinstall": "nuxt prepare && patch-package",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "preview": "nuxt preview"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.49.4",
+    "ignore": "^7.0.4",
     "nuxt": "^3.17.1",
     "pg": "^8.15.6",
     "postgres": "^3.4.5",
@@ -18,6 +20,8 @@
     "zod": "^3.24.3"
   },
   "devDependencies": {
-    "@types/pg": "^8.11.14"
-  }
+    "@types/pg": "^8.11.14",
+    "patch-package": "^8.0.0"
+  },
+  "packageManager": "pnpm@9.1.2+sha512.127dc83b9ea10c32be65d22a8efb4a65fb952e8fefbdfded39bdc3c97efc32d31b48b00420df2c1187ace28c921c902f0cb5a134a4d032b8b5295cbfa2c681e2"
 }
