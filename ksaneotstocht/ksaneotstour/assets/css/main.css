@@ -1,0 +1,20 @@
+/* assets/css/main.css */
+/*
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*/
+/* Optioneel: globale stijlen */
+/*body {
+  /*@apply bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-200;
+  /* Basis achtergrond en tekstkleur voor light/dark */
+/*}
+
+/* Leaflet dark mode basis (vereist mogelijk meer specifieke styling) */
+/*.leaflet-container {
+   background: #333; /* Donkere achtergrond voor kaart */
+/*}
+/*.leaflet-tile-pane {
+  /* Optioneel: filter om tiles donkerder te maken */
+  /* filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7); */
+/*}
