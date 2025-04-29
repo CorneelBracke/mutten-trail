@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="text-3xl font-bold text-center my-6 text-brand-yellow">
-      KSA Nevele Dorpstour
+      KSA en NEOTS Dorpstour
     </h1>
     <div class="container mx-auto px-4">
       <MapDisplay :stops="activeStops" :key="mapKey" />

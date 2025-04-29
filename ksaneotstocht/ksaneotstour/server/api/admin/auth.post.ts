@@ -54,7 +54,8 @@ export default defineEventHandler(async (event) => {
       });
       console.log(`>>> [auth.post] Session object obtained. Current data BEFORE update:`, JSON.stringify(session.data));
 
-      await session.update({ isAdmin: true, loggedInAt: Date.now() });
+      const loggedInAt = Date.now();
+      await session.update({ isAdmin: true, loggedInAt });
 
       // !! BELANGRIJK !! Controleer de data DIRECT na het updaten
       console.log(`>>> [auth.post] Session updated attempt finished. Session data AFTER update:`, JSON.stringify(session.data));
