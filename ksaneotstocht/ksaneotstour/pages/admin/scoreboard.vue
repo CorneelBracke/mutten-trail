@@ -76,10 +76,10 @@
   
   // Helper voor rank kleur (optioneel)
   function getRankPillColor(index: number): string {
-      if (index === 0) return 'bg-yellow-500 text-black'; // Goud
-      if (index === 1) return 'bg-gray-400 text-black'; // Zilver
-      if (index === 2) return 'bg-orange-500 text-black'; // Brons
-      return 'bg-gray-600 text-gray-200'; // Andere ranks
+      if (index === 0) return 'text-yellow-500'; // Goud
+      if (index === 1) return 'text-gray-500'; // Zilver
+      if (index === 2) return 'text-orange-500'; // Brons
+      return 'text-gray-400'; // Andere ranks
   }
   </script>
 
