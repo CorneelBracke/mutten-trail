@@ -1,5 +1,5 @@
 <template>
-  <main class="container w-auto max-w-screen-xl mx-auto md:px-6 flex-grow">
+  <main class="w-full overflow-x-hidden">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
