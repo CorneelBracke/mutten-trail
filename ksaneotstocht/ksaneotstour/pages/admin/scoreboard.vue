@@ -86,10 +86,10 @@ async function handleDelete(id: number) { if (loadingStates[id]) return; if (!co
 
 // Helper voor rank kleur (met achtergrond 'pill')
 function getRankPillColor(index: number): string {
-    if (index === 0) return 'bg-yellow-400 text-black font-bold px-1 rounded'; // Goud
-    if (index === 1) return 'bg-gray-400 text-black font-bold px-1 rounded'; // Zilver
-    if (index === 2) return 'bg-orange-500 text-black font-bold px-1 rounded'; // Brons
-    return 'bg-gray-600 text-gray-200 font-semibold px-1 rounded'; // Andere ranks
+    if (index === 0) return 'text-yellow font-bold px-1 rounded'; // Goud
+    if (index === 1) return 'text-gray font-bold px-1 rounded'; // Zilver
+    if (index === 2) return 'text-orange font-bold px-1 rounded'; // Brons
+    return 'text-gray-600 bg-white font-semibold px-1 rounded'; // Andere ranks
 }
 </script>
 
