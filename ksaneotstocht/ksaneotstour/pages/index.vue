@@ -3,6 +3,7 @@
     <h1 class="text-3xl font-bold text-center my-6 text-brand-yellow">
       KSA en NEOTS Dorpstour
     </h1>
+    <ScoreboardWidget />
     <div class="container mx-auto px-4">
       <MapDisplay :stops="activeStops" :key="mapKey" />
 
@@ -21,6 +22,7 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import MapDisplay from '~/components/MapDisplay.vue';
 import type { Stop } from '~/types';
+import ScoreboardWidget from '~/components/ScoreboardWidget.vue';
 
 // Metadata voor de pagina
 useHead({

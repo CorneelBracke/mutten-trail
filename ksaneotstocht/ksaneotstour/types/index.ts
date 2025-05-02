@@ -21,3 +21,9 @@ export interface StopFormData {
     end_time: string;   // Verwacht YYYY-MM-DDTHH:mm format van input
     color: string;
 }
+
+export interface ScoreboardEntry {
+  id: number;
+  group_name: string;
+  score: number;
+}

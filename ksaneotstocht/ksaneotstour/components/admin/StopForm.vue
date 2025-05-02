@@ -22,7 +22,7 @@
        </div>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 w-90% sm:grid-cols-2 gap-4">
        <div>
          <label for="start_time" class="block text-sm font-medium text-gray-400 mb-1">Start Tijd</label>
          <input type="datetime-local" id="start_time" v-model="formData.start_time" required :class="inputClasses" />

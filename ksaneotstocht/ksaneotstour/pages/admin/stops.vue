@@ -49,3 +49,27 @@ async function handleFormSaved() { console.log('Stop opgeslagen/toegevoegd'); ca
 async function handleToggle(stop: Stop) { const newState = !stop.is_manually_disabled; console.log(`Toggling stop ${stop.id} to ${newState ? 'DISABLED' : 'ENABLED'}`); try { await $fetch(`/api/admin/stops/${stop.id}`, { method: 'PATCH', body: { is_manually_disabled: newState } }); await refresh(); } catch (err) { console.error("Toggle failed:", err); alert('Kon stop status niet wijzigen.'); } }
 async function handleDelete(stopId: number) { if (!confirm(`Weet je zeker dat je stop #${stopId} wilt verwijderen?`)) return; console.log('Deleting stop:', stopId); try { await $fetch(`/api/admin/stops/${stopId}`, { method: 'DELETE' }); await refresh(); } catch (err) { console.error("Delete failed:", err); alert('Kon stop niet verwijderen.'); } }
 </script>
+
+<style scoped>
+h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+h2 {
+  font-family: 'Poppins', sans-serif;
+}
+h3 {
+  font-family: 'Poppins', sans-serif;
+}
+a {
+  font-family: 'Poppins', sans-serif;
+}
+p {
+  font-family: 'Poppins', sans-serif;
+}
+label {
+  font-family: 'Poppins', sans-serif;
+}
+</style>
