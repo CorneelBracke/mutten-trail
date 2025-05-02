@@ -1,4 +1,4 @@
-label<template>
+<template>
   <form @submit.prevent="handleSubmit" class="space-y-4">
     <div>
       <label for="name" class="block text-sm font-medium text-gray-400 mb-1">Naam</label>
@@ -59,6 +59,27 @@ label<template>
 import { ref, watch, computed, onMounted, onUnmounted } from 'vue';
 import type { Stop, StopFormData } from '~/types';
 import BaseButton from '~/components/UI/BaseButton.vue';
+import L from 'leaflet';
+// Belangrijk: Importeer CSS hier of zorg dat het globaal geladen wordt
+// Als je het al globaal laadt, is deze import hier misschien niet nodig.
+import 'leaflet/dist/leaflet.css';
+// Importeer de afbeeldingen via Vite/Nuxt's module systeem
+import iconUrl from 'leaflet/dist/images/marker-icon.png';
+import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png';
+import shadowUrl from 'leaflet/dist/images/marker-shadow.png';
+
+// Voer de fix alleen client-side uit
+if (process.client) {
+    // Verwijder de oude manier waarop Leaflet URL's probeert te vinden
+    delete (L.Icon.Default.prototype as any)._getIconUrl;
+    // Stel de correcte paden in, gebruikmakend van de geïmporteerde variabelen
+    L.Icon.Default.mergeOptions({
+        iconRetinaUrl: iconRetinaUrl,
+        iconUrl: iconUrl,
+        shadowUrl: shadowUrl,
+    });
+    console.log("Leaflet default icon paths fixed for StopForm map.");
+}
 
 // --- Props & Emits ---
 const props = defineProps<{ stopToEdit: Stop | null }>();
@@ -76,7 +97,7 @@ const locationMapContainer = ref<HTMLElement | null>(null);
 const locationMapReady = ref(false);
 let locationMapInstance: any = null;
 let locationMarker: any = null;
-let L: any = null;
+let leafletInstance: any = null;
 const WACHTEBEKE_COORDS: [number, number] = [51.18, 3.85]; // Hergebruik coördinaten
 
 // --- Input Styling ---
@@ -220,12 +241,12 @@ async function initializeLocationMap() {
   if (!process.client || !locationMapContainer.value || locationMapInstance) return;
 
   try {
-    L = await import('leaflet');
+    leafletInstance = await import('leaflet');
     // CSS wordt al globaal geïmporteerd
 
-    locationMapInstance = L.map(locationMapContainer.value).setView(WACHTEBEKE_COORDS, 13); // Start in Wachtebeke
+    locationMapInstance = leafletInstance.map(locationMapContainer.value).setView(WACHTEBEKE_COORDS, 13); // Start in Wachtebeke
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    leafletInstance.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> contributors',
       maxZoom: 18, // Beperk zoom eventueel
     }).addTo(locationMapInstance);
@@ -254,7 +275,7 @@ async function initializeLocationMap() {
 }
 
 function updateLocationMarker(lat: number, lng: number, centerMap = false) {
-  if (!locationMapInstance || !L) return;
+  if (!locationMapInstance || !leafletInstance) return;
 
   // Update form data
   formData.value.latitude = parseFloat(lat.toFixed(6)); // Rond af voor netheid
