@@ -1,36 +1,37 @@
 <template>
-    <div class="fixed bottom-4 right-4 z-20 max-w-xs w-[calc(100%-2rem)] sm:w-64 text-sm m-4">
-      <div class="bg-gray-800 bg-opacity-85 backdrop-blur-md text-gray-200 rounded-lg shadow-xl border border-gray-700 overflow-hidden">
+    <div class="fixed bottom-4 right-4 z-30 w-[calc(100%-2rem)] max-w-[260px] text-xs"> <div class="bg-gray-800 bg-opacity-90 backdrop-blur-md text-gray-200 rounded-lg shadow-xl border border-gray-700 overflow-hidden">
         <button
           @click="toggleExpand"
-          class="flex justify-between items-center p-2 text-left focus:outline-none focus:ring-2 focus:ring-brand-yellow rounded-t-lg"
+          class="w-full flex justify-between items-center p-1.5 text-left focus:outline-none focus:ring-2 focus:ring-brand-yellow rounded-t-lg"
           :class="isExpanded ? 'border-b border-gray-700' : ''"
           aria-label="Toggle scoreboard"
           :aria-expanded="isExpanded"
         >
-          <h3 class="font-semibold text-brand-yellow flex items-center">
-             <span class="i-mdi-format-list-numbered w-5 h-5 mr-2"></span> Scorebord
+          <h3 class="font-semibold text-sm text-brand-yellow flex items-center">
+             <span v-if="!isExpanded" class="i-mdi-format-list-numbered w-5 h-5 mr-1.5"></span>
+             <span v-else class="i-mdi-podium w-5 h-5 mr-1.5"></span>
+             Scorebord
            </h3>
           <span v-if="isExpanded" class="i-mdi-close w-5 h-5 text-gray-400 hover:text-white"></span>
-          <span v-else class="i-mdi-chevron-down w-5 h-5 text-gray-400 hover:text-white"></span> </button>
+          <span v-else class="i-mdi-chevron-down w-5 h-5 text-gray-400 hover:text-white"></span>
+        </button>
   
-        <div v-show="isExpanded" class="p-3 max-h-60 overflow-y-auto">
-          <div v-if="pending" class="py-4 text-center text-gray-400 text-xs">Laden...</div>
-          <div v-else-if="error" class="py-4 text-center text-red-400 text-xs">Fout: {{ error.message }}</div>
-          <div v-else-if="!scores || scores.length === 0" class="py-4 text-center text-gray-400 text-xs">Geen scores.</div>
-          <ul v-else class="space-y-1.5">
+        <div v-show="isExpanded" class="p-2 max-h-48 sm:max-h-60 overflow-y-auto">
+          <ul class="space-y-1">
             <li v-for="(entry, index) in scores" :key="entry.id" class="flex items-center justify-between text-xs">
-               <div class="flex items-baseline space-x-2 truncate mr-2">
-                   <span class="font-bold text-center w-5 shrink-0" :class="getRankColor(index)">{{ index + 1 }}.</span>
+               <div class="flex items-baseline space-x-1.5 truncate mr-2">
+                   <span
+                    :class="getRankPillColor(index)"
+                   >{{ index + 1 }}</span>
                    <span class="font-medium text-gray-100 truncate">{{ entry.group_name }}</span>
                </div>
-               <span class="font-bold text-brand-yellow ml-2 shrink-0">{{ entry.score }}</span>
+               <span class="font-bold text-base text-brand-yellow ml-2 shrink-0">{{ entry.score }}</span>
             </li>
           </ul>
-           <BaseButton @click="refresh" :disabled="pending" class="mt-3 text-xs text-gray-500 hover:text-gray-300 disabled:opacity-50 flex items-center justify-center">
+           <button @click="() => refresh()" :disabled="pending" class="mt-3 text-xs text-gray-500 hover:text-gray-300 disabled:opacity-50 w-full flex items-center justify-center">
                <span v-if="pending" class="i-mdi-loading animate-spin w-3 h-3 mr-1"></span>
-               {{ pending ? 'Refreshing...' : 'Refresh' }}
-           </BaseButton>
+               {{ pending ? 'Verversen...' : 'Verversen' }}
+           </button>
         </div>
       </div>
     </div>
@@ -64,14 +65,15 @@
   });
   onUnmounted(() => { if (intervalId) clearInterval(intervalId); });
   
-  // Helper voor rank kleur (optioneel)
-  function getRankColor(index: number): string {
-      if (index === 0) return 'text-yellow-400';
-      if (index === 1) return 'text-gray-400';
-      if (index === 2) return 'text-orange-400';
-      return 'text-gray-500';
+
+  function getRankPillColor(index: number): string {
+      if (index === 0) return 'bg-yellow-400 text-black';
+      if (index === 1) return 'bg-gray-400 text-black';
+      if (index === 2) return 'bg-orange-400 text-black';
+      return 'bg-gray-500 text-white';
   }
-  </script>
+
+ </script>
   
   <style scoped>
   /* Custom scrollbar styling (optioneel) */
@@ -86,4 +88,9 @@
     border-radius: 20px;
     border: 3px solid transparent;
   }
+.max-h-48::-webkit-scrollbar, .max-h-60::-webkit-scrollbar { width: 4px; }
+.max-h-48::-webkit-scrollbar-track, .max-h-60::-webkit-scrollbar-track { background: transparent; }
+.max-h-48::-webkit-scrollbar-thumb, .max-h-60::-webkit-scrollbar-thumb { background-color: #4a5568; border-radius: 20px; border: 3px solid transparent; }
+
+  [class^="i-mdi-"] { min-width: 1em; min-height: 1em; }
   </style>

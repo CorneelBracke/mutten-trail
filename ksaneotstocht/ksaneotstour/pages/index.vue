@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h1 class="text-3xl font-bold text-center my-6 text-brand-yellow">
+    <h1 class="text-3xl font-bold text-center my-4 mx-4 text-brand-yellow">
       KSA en NEOTS Dorpstour
     </h1>
     <ScoreboardWidget />
-    <div class="container mx-auto px-4">
+    <div class="container mx-auto px-4 relative">
       <MapDisplay :stops="activeStops" :key="mapKey" />
 
       <div v-if="pending && !activeStops?.length" class="text-center py-4 text-gray-400">Initiële stops laden...</div>
