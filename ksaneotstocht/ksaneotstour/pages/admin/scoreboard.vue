@@ -51,7 +51,7 @@
                             :disabled="loadingStates[entry.id]"> + </BaseButton>
                         <BaseButton size="sm" variant="danger" @click="handleDelete(entry.id)"
                             :disabled="loadingStates[entry.id]" class="ml-2" aria-label="Verwijder">
-                            <span class="i-mdi-delete w-4 h-4"></span>
+                            <span class="i-mdi-delete w-4 h-4">X</span>
                         </BaseButton>
                     </div>
                     <div v-if="loadingStates[entry.id]" class="w-full text-center text-xs text-gray-400 pt-1">Bezig...
