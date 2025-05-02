@@ -2,7 +2,7 @@
 <template>
   <div
     ref="mapContainer"
-    class="w-full h-[70vh] overflow-hidden rounded shadow bg-gray-700 z-0"
+    class="h-[70vh] overflow-hidden rounded shadow bg-gray-700 z-0"
   >
     <p v-if="!leafletReady" class="text-white p-4">Kaart laden...</p>
   </div>

@@ -1,5 +1,5 @@
 <template>
-    <div class="formsman w-full max-w-xs p-6 bg-gray-800 rounded shadow-md">
+    <div class="formsman max-w-xs p-6 bg-gray-800 rounded shadow-md">
       <h2 class="text-2xl font-bold mb-6 text-center text-brand-yellow">Super Swaggy Login</h2>
       <form @submit.prevent="handleLogin">
         <div class="mb-4 w-auto">

@@ -47,7 +47,7 @@
                             <span class="i-mdi-delete w-4 h-4">Delete</span>
                         </BaseButton>
                     </div>
-                    <div v-if="loadingStates[entry.id]" class="w-full text-center text-xs text-gray-400 pt-1">Bezig...
+                    <div v-if="loadingStates[entry.id]" class="text-center text-xs text-gray-400 pt-1">Bezig...
                     </div>
                 </li>
             </ul>

@@ -3,7 +3,7 @@
       <div class="bg-gray-800 bg-opacity-85 backdrop-blur-md text-gray-200 rounded-lg shadow-xl border border-gray-700 overflow-hidden">
         <button
           @click="toggleExpand"
-          class="w-full flex justify-between items-center p-2 text-left focus:outline-none focus:ring-2 focus:ring-brand-yellow rounded-t-lg"
+          class="flex justify-between items-center p-2 text-left focus:outline-none focus:ring-2 focus:ring-brand-yellow rounded-t-lg"
           :class="isExpanded ? 'border-b border-gray-700' : ''"
           aria-label="Toggle scoreboard"
           :aria-expanded="isExpanded"
@@ -27,7 +27,7 @@
                <span class="font-bold text-brand-yellow ml-2 shrink-0">{{ entry.score }}</span>
             </li>
           </ul>
-           <BaseButton @click="refresh" :disabled="pending" class="mt-3 text-xs text-gray-500 hover:text-gray-300 disabled:opacity-50 w-full flex items-center justify-center">
+           <BaseButton @click="refresh" :disabled="pending" class="mt-3 text-xs text-gray-500 hover:text-gray-300 disabled:opacity-50 flex items-center justify-center">
                <span v-if="pending" class="i-mdi-loading animate-spin w-3 h-3 mr-1"></span>
                {{ pending ? 'Refreshing...' : 'Refresh' }}
            </BaseButton>
