@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="container mx-auto">
     <h1 class="text-3xl font-bold text-center my-4 mx-4 text-brand-yellow">
       KSA en NEOTS Dorpstour
     </h1>
     <ScoreboardWidget />
-    <div class="container mx-auto px-4 relative">
+    <div class=" relative w-full overflow-hidden centeredlol">
       <MapDisplay :stops="activeStops" :key="mapKey" />
 
       <div v-if="pending && !activeStops?.length" class="text-center py-4 text-gray-400">Initiële stops laden...</div>
@@ -85,5 +85,10 @@ onUnmounted(() => {
     font-size: 2rem;
     text-align: center;
     margin-bottom: 1.5rem;
+  }
+  .centeredlol:first-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   </style>

@@ -2,7 +2,7 @@
 <template>
   <div
     ref="mapContainer"
-    class="w-full h-[70vh] overflow-hidden rounded shadow bg-gray-700 z-0"
+    class="h-[70vh] overflow-hidden shadow bg-gray-700 z-0"
   >
     <p v-if="!leafletReady" class="text-white p-4">Kaart laden...</p>
   </div>
@@ -94,4 +94,5 @@ onUnmounted(() => { if (mapInstance) { mapInstance.remove(); mapInstance = null;
 .leaflet-div-icon span {
   box-shadow: 0 0 3px rgba(0,0,0,0.5);
 }
+
 </style>
